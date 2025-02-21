@@ -2,9 +2,12 @@ import {
   Image,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
   SafeAreaView,
   ScrollView,
   Text,
+  TextInput,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import InputComponent from '../../components/InputComponent';
@@ -13,12 +16,16 @@ import ButtonComponent from '../../components/ButtonComponent';
 import {loginApi} from '../../api/Api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
+import InputInfoComponent from '../../components/InputInfoComponent';
+import Icon from 'react-native-vector-icons/Entypo';
+import {useRecoilState} from 'recoil';
+import {StateSendOtpAtom} from '../../Atom/StateSendOtpAtom';
 
-const LoginScreen = () => {
-  const navigation = useNavigation();
-
+const LoginScreen = ({navigation}: any) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isShowPass, setIsShowPass] = useState(false);
+  const [stateSendOtp, setStateSendOtp] = useRecoilState(StateSendOtpAtom);
 
   const handleClickLogIn = () => {
     console.log('Click Log in');
@@ -29,43 +36,74 @@ const LoginScreen = () => {
         console.log('Response: ', response);
         // console.log("Token: ", response.result.token);
         AsyncStorage.setItem('token', response.result.token);
-        navigation.navigate('Home' as never);
+        navigation.navigate('Home');
       }
     });
+  };
+
+  const handleClickShowPassword = () => {
+    setIsShowPass(!isShowPass);
+  };
+
+  const handleClickForgotPassword = () => {
+    navigation.navigate('VerifyEmail');
+    setStateSendOtp('ForgotPassword');
   };
 
   return (
     <KeyboardAvoidingView
       className="flex-1 bg-background"
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <SafeAreaView className="w-full h-full">
-        <ScrollView
-          contentContainerStyle={{
-            flexGrow: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-          keyboardShouldPersistTaps="handled">
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
+        keyboardShouldPersistTaps="handled">
+        <View className="w-full h-full items-center justify-center px-4 space-y-6">
           <View>
             <Image source={require('../../../assets/images/logo.png')} />
           </View>
-          <View className="w-full items-center px-3">
-            <InputComponent
+          <View className="w-full">
+            <InputInfoComponent
               value={username}
               onChangeValue={setUsername}
-              placeholder="Enter your username"
+              placeholder=""
+              title="Username"
             />
-            <InputComponent
+          </View>
+          <View className="relative border-b border-gray-400 w-full mb-20">
+            <View className="flex-row justify-between">
+              <Text className="text-[#FCC434] font-base text-base">
+                Password
+              </Text>
+              <TouchableOpacity onPress={() => handleClickForgotPassword()}>
+                <Text className="text-[#FCC434] font-base text-base underline">
+                  Forgot your password?
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <TextInput
               value={password}
-              onChangeValue={setPassword}
-              placeholder="Enter your password"
+              onChangeText={setPassword}
+              placeholder=""
+              secureTextEntry={!isShowPass}
+              className="border-white text-white font-base text-lg w-full"
             />
+            <TouchableOpacity
+              onPress={() => handleClickShowPassword()}
+              className="absolute right-4 top-10">
+              {isShowPass ? (
+                <Icon name="eye" size={24} color="white" />
+              ) : (
+                <Icon name="eye-with-line" size={24} color="white" />
+              )}
+            </TouchableOpacity>
           </View>
           <View className="w-full items-center">
             <ButtonComponent onClick={handleClickLogIn} title="Log in" />
           </View>
-        </ScrollView>
-      </SafeAreaView>
+        </View>
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

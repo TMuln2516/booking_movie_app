@@ -9,7 +9,7 @@ module.exports = {
         secondary: '#4D438A',
       },
       fontFamily: {
-        Lato: ['Lato-Bold', 'serif'],
+        base: ['NexaBold', 'serif'],
       },
     },
   },

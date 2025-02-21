@@ -8,7 +8,6 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import ButtonComponent from '../../components/ButtonComponent';
 import {useState} from 'react';
 import InputInfoComponent from '../../components/InputInfoComponent';
@@ -105,7 +104,7 @@ const RegisterScreen = ({route, navigation}: any) => {
                 />
                 {/* input password cus */}
                 <View className="relative border-b border-gray-400">
-                  <Text className="text-[#FCC434] font-Lato text-2xl">
+                  <Text className="text-[#FCC434] font-base text-2xl">
                     Password
                   </Text>
                   <TextInput
@@ -113,7 +112,7 @@ const RegisterScreen = ({route, navigation}: any) => {
                     onChangeText={setPasswordValue}
                     placeholder=""
                     secureTextEntry={!isShowPass}
-                    className="border-white text-white font-Lato text-lg w-full"
+                    className="border-white text-white font-base text-lg w-full"
                   />
                   <TouchableOpacity
                     onPress={() => handleClickShowPassword()}
@@ -141,13 +140,13 @@ const RegisterScreen = ({route, navigation}: any) => {
 
               {/* Select Date of birth */}
               <View className="space-y-4">
-                <Text className="text-[#FCC434] font-Lato text-2xl">
+                <Text className="text-[#FCC434] font-base text-2xl">
                   Date of birth
                 </Text>
                 <Pressable
                   className="border border-gray-500 rounded-md px-4 py-2"
                   onPress={() => handleClickDateOfBirth()}>
-                  <Text className="text-lg font-Lato text-white">
+                  <Text className="text-lg font-base text-white">
                     {dateOfBirthValue
                       ? new Date(dateOfBirthValue).toLocaleDateString('vi-VN')
                       : 'Select Date'}
@@ -157,7 +156,7 @@ const RegisterScreen = ({route, navigation}: any) => {
 
               {/* Gender */}
               <View className="space-y-4">
-                <Text className="text-[#FCC434] font-Lato text-2xl">
+                <Text className="text-[#FCC434] font-base text-2xl">
                   Gender
                 </Text>
                 <View className="justify-between">

@@ -43,10 +43,10 @@ const InputOtpComponent = (props: InputOtpComponentProps) => {
       />
       <View className="items-end mt-2">
         {timeLeft > 0 ? (
-          <Text className="text-lg font-Lato text-white">{formatTime()}</Text>
+          <Text className="text-lg font-base text-white">{formatTime()}</Text>
         ) : (
           <TouchableOpacity onPress={clickResentOtp}>
-            <Text className="text-lg font-Lato text-white underline">
+            <Text className="text-lg font-base text-white underline">
               Gửi lại mã
             </Text>
           </TouchableOpacity>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     height: 60,
     textAlign: 'center',
     color: 'white',
-    fontFamily: 'Lato-Bold',
+    fontFamily: 'base-Bold',
     borderWidth: 1,
     borderBottomWidth: 1,
     borderRadius: 10,

@@ -9,10 +9,13 @@ import InputOtpComponent from '../../components/InputOtpComponent';
 import {useEffect, useState} from 'react';
 import ButtonComponent from '../../components/ButtonComponent';
 import {postApi} from '../../api/Api';
+import {StateSendOtpAtom} from '../../Atom/StateSendOtpAtom';
+import {useRecoilState} from 'recoil';
 
 const VerifyOtpScreen = ({route, navigation}: any) => {
   const email = route.params?.email || 'No value';
   const [otpValue, setOtpValue] = useState('');
+  const [stateSendOtp, setStateSendOtp] = useRecoilState(StateSendOtpAtom);
 
   const handleClickContinue = () => {
     console.log('Otp: ', otpValue);
@@ -28,6 +31,7 @@ const VerifyOtpScreen = ({route, navigation}: any) => {
           console.log('Reponse: ', response.result);
           if (response.result === true) {
             navigation.navigate('Register', {otp: otpValue, email: email});
+            setStateSendOtp('');
           }
         }
       });
@@ -42,10 +46,10 @@ const VerifyOtpScreen = ({route, navigation}: any) => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <SafeAreaView className="bg-black w-full h-full px-4">
         <View className="space-y-4">
-          <Text className="text-[#FCC434] font-Lato text-3xl">
+          <Text className="text-[#FCC434] font-base text-3xl">
             Confirm OTP code
           </Text>
-          <Text className="text-white font-Lato pb-12">
+          <Text className="text-white font-base pb-12">
             You just need to enter the OTP sent to the registered email {email}
           </Text>
         </View>

@@ -11,7 +11,7 @@ const InputComponent = (props: InputComponentProps) => {
 
   return (
     <TextInput
-      className="border-white text-white font-Lato text-lg w-full"
+      className="border-white text-white font-base text-lg w-full"
       value={value}
       onChangeText={onChangeValue}
       placeholder={placeholder}

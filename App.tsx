@@ -1,9 +1,12 @@
-import Routers from "./src/routers/Routers";
+import {RecoilRoot} from 'recoil';
+import Routers from './src/routers/Routers';
 
 const App = () => {
   return (
-    <Routers />
-  )
-}
+    <RecoilRoot>
+      <Routers />
+    </RecoilRoot>
+  );
+};
 
 export default App;
