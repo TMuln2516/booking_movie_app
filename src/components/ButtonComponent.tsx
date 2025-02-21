@@ -1,21 +1,40 @@
-import { Button, Pressable, Text } from "react-native";
+import {Button, Pressable, Text} from 'react-native';
 
 interface ButtonComponentProps {
-    title: string,
-    onClick: () => void
+  title: string;
+  type?: 'default' | 'info';
+  onClick: () => void;
 }
 
 const ButtonComponent = (props: ButtonComponentProps) => {
-    const { onClick, title } = props;
+  const {onClick, title, type} = props;
 
-    return (
-        <Pressable className="h-[50px] bg-accent items-center justify-center rounded-xl w-[30%]"
-            onPress={onClick} >
-            <Text className="text-sm text-white">
-                {title}
-            </Text>
-        </Pressable>
-    )
-}
+  const handleCheckColor = () => {
+    switch (type) {
+      case 'info':
+        return {
+          bgColor: 'bg-[#000000]',
+          borderColor: 'border-[#FFFFFF]',
+          textColor: 'text-white',
+        };
+      default:
+        return {
+          bgColor: 'bg-[#FCC434]',
+          borderColor: 'border-[#FCC434]',
+          textColor: 'text-black',
+        };
+    }
+  };
+
+  const {bgColor, textColor, borderColor} = handleCheckColor();
+
+  return (
+    <Pressable
+      className={`h-[50px] items-center justify-center rounded-full w-full border ${borderColor} ${bgColor}`}
+      onPress={onClick}>
+      <Text className={`text-xl font-Lato ${textColor}`}>{title}</Text>
+    </Pressable>
+  );
+};
 
 export default ButtonComponent;
