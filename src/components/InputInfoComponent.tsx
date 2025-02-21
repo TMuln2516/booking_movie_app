@@ -12,7 +12,7 @@ const InputInfoComponent = (props: InputInfoComponentProps) => {
   const {onChangeValue, placeholder, title, value} = props;
   return (
     <View className="py-2">
-      <Text className="text-[#FCC434] font-Lato text-2xl">{title}</Text>
+      <Text className="text-[#FCC434] font-base text-báe">{title}</Text>
       <View className="border-b-[1px] border-gray-400">
         <InputComponent
           value={value}

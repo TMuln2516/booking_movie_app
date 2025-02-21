@@ -32,7 +32,7 @@ const ButtonComponent = (props: ButtonComponentProps) => {
     <Pressable
       className={`h-[50px] items-center justify-center rounded-full w-full border ${borderColor} ${bgColor}`}
       onPress={onClick}>
-      <Text className={`text-xl font-Lato ${textColor}`}>{title}</Text>
+      <Text className={`text-xl font-base ${textColor}`}>{title}</Text>
     </Pressable>
   );
 };
