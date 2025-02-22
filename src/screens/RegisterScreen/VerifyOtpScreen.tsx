@@ -30,7 +30,14 @@ const VerifyOtpScreen = ({route, navigation}: any) => {
         } else {
           console.log('Reponse: ', response.result);
           if (response.result === true) {
-            navigation.navigate('Register', {otp: otpValue, email: email});
+            if (stateSendOtp === 'Register') {
+              navigation.navigate('Register', {otp: otpValue, email: email});
+            } else if (stateSendOtp === 'ForgotPassword') {
+              navigation.navigate('ForgotPassword', {
+                otp: otpValue,
+                email: email,
+              });
+            }
             setStateSendOtp('');
           }
         }
