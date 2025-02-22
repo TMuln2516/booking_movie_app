@@ -42,7 +42,10 @@ const Routers = () => {
           name="ForgotPassword"
           component={ForgotPassScreen}
           options={{
-            headerShown: false,
+            headerShown: true,
+            headerTitle: '',
+            headerStyle: {backgroundColor: '#000000'},
+            headerTintColor: '#FFFFFF',
           }}
         />
         <Stack.Screen

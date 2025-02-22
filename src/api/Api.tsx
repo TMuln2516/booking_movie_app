@@ -41,6 +41,33 @@ export const postApi = async (
   }
 };
 
+export const putApi = async (
+  url: string,
+  params: any,
+  useToken: boolean,
+  callback: (error: any, response: any) => void,
+) => {
+  try {
+    // Lấy token nếu có auth
+    const token = useToken ? await AsyncStorage.getItem('token') : null;
+    const response: AxiosResponse = await axios.put(
+      `${API_URL}${url}`,
+      params,
+      {
+        headers: {
+          ...(token ? {Authorization: `Bearer ${token}`} : {}),
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+    callback(null, response.data);
+  } catch (error: any) {
+    const errorMessage =
+      error.response?.data?.message || 'Something went wrong';
+    callback(errorMessage, null);
+  }
+};
+
 export const loginApi = async (
   username: string,
   password: string,

@@ -104,7 +104,7 @@ const RegisterScreen = ({route, navigation}: any) => {
                 />
                 {/* input password cus */}
                 <View className="relative border-b border-gray-400">
-                  <Text className="text-[#FCC434] font-base text-2xl">
+                  <Text className="text-[#FCC434] font-base text-base">
                     Password
                   </Text>
                   <TextInput
@@ -140,7 +140,7 @@ const RegisterScreen = ({route, navigation}: any) => {
 
               {/* Select Date of birth */}
               <View className="space-y-4">
-                <Text className="text-[#FCC434] font-base text-2xl">
+                <Text className="text-[#FCC434] font-base text-base">
                   Date of birth
                 </Text>
                 <Pressable
@@ -156,7 +156,7 @@ const RegisterScreen = ({route, navigation}: any) => {
 
               {/* Gender */}
               <View className="space-y-4">
-                <Text className="text-[#FCC434] font-base text-2xl">
+                <Text className="text-[#FCC434] font-base text-nase">
                   Gender
                 </Text>
                 <View className="justify-between">
