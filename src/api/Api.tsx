@@ -14,6 +14,28 @@ export const getToken = async (): Promise<string | null> => {
   }
 };
 
+export const getApi = async (
+  url: string,
+  useToken: boolean,
+  callback: (error: any, response: any) => void,
+) => {
+  try {
+    // Lấy token nếu có auth
+    const token = useToken ? await AsyncStorage.getItem('token') : null;
+    const response: AxiosResponse = await axios.get(`${API_URL}${url}`, {
+      headers: {
+        ...(token ? {Authorization: `Bearer ${token}`} : {}),
+        'Content-Type': 'application/json',
+      },
+    });
+    callback(null, response.data);
+  } catch (error: any) {
+    const errorMessage =
+      error.response?.data?.message || 'Something went wrong';
+    callback(errorMessage, null);
+  }
+};
+
 export const postApi = async (
   url: string,
   params: any,
