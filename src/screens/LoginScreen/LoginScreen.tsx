@@ -36,7 +36,7 @@ const LoginScreen = ({navigation}: any) => {
         console.log('Response: ', response);
         // console.log("Token: ", response.result.token);
         AsyncStorage.setItem('token', response.result.token);
-        navigation.navigate('Home');
+        navigation.navigate('Main');
       }
     });
   };
